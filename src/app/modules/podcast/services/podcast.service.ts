@@ -18,7 +18,9 @@ export class PodcastService {
         'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
       )
       .pipe(map((value: any) => value.feed.entry))
-      .subscribe((podcastList) => this.podcastList.next(podcastList));
+      .subscribe((podcastList: Podcast[]) =>
+        this.podcastList.next(podcastList)
+      );
   }
 
   getPodcastEpisodes(podcastId: string) {
@@ -29,7 +31,7 @@ export class PodcastService {
         )}`
       )
       .pipe(map((response) => JSON.parse((response as any).contents).results))
-      .subscribe((podcastEpisodes) => {
+      .subscribe((podcastEpisodes: Episode[]) => {
         this.currentPodcastEpisodes.next(podcastEpisodes);
       });
   }

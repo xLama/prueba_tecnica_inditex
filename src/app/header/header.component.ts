@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { NotifyHTTPRequesting } from '../interceptor/notify-request.service';
+import { NotifyHTTPRequesting } from '../interceptors/notify-request.service';
 import { Observable, combineLatest, map } from 'rxjs';
 
 @Component({
