@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 20px;
+
+  h3 {
+    color: blueviolet;
+    margin-left: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  mat-spinner{
+    margin-right: 10px;
+  }
+
+
+}

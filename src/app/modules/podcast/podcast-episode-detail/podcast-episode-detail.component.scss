@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    padding: 2%;
+
+
+    .name {
+      font-weight: bold;
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
+
+    audio {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+  }
+
+
+}

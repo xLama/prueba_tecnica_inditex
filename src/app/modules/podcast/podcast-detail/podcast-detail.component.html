@@ -1,0 +1,19 @@
+<div class="podcast-summmary" [routerLink]="['/podcast', this.podcastDetail?.id?.attributes?.['im:id']]">
+  <div class="inner-podcast-summary">
+    <div class="image"><img [src]="podcastDetail?.['im:image']?.[2]?.label" /></div> 
+    <div class="separator"></div>
+    <div class="title"> 
+      <span>{{podcastDetail?.['im:name']?.label}}</span>
+      <span>by {{ podcastDetail?.['im:artist']?.label }} </span>
+    </div>
+    <div class="separator"></div>
+    <div class="description">
+      <span>Description:</span>
+      <span> {{ podcastDetail?.summary?.label }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="podcast-episodes">
+  <router-outlet></router-outlet>
+</div>

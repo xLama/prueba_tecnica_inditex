@@ -1,0 +1,9 @@
+<div class="container">
+  <span class="name">{{ episodeDetail?.collectionName}}</span>
+  <div [innerHTML]="episodeDetail?.shortDescription"></div>
+  <audio [src]="episodeDetail?.previewUrl" controls>
+    Your browser does not support the <code>audio</code> element.
+  </audio>
+</div>
+
+

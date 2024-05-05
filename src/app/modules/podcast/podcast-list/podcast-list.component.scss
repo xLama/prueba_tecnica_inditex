@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .filter {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+    gap: 10px;
+
+
+    .count {
+      display: flex;
+      background-color: blue;
+      border-radius: 20%;
+      align-items: center;
+      width: 2em;
+      color: white;
+      justify-content: center;
+    }
+
+    input{
+      padding: 5px;
+    }
+  }
+
+  app-podcast-chip:hover {
+    cursor: pointer ;
+  }
+}

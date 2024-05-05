@@ -1,0 +1,23 @@
+
+<div class="filter" [formGroup]="form" >
+  <span class="count">{{ filteredPodcastList.length }}</span>
+  <input
+  formControlName="search"
+    type="text"
+    placeholder="Filter podcasts..."
+   
+  />
+</div>
+
+
+  <mat-grid-list cols="4">
+    @for (podcast of filteredPodcastList; track $index) {
+    <mat-grid-tile>
+      <app-podcast-chip
+        [podcast]="podcast"
+        [routerLink]="['/podcast', podcast.id.attributes['im:id']]"
+      ></app-podcast-chip
+    ></mat-grid-tile>
+    } @empty { Empty list of podcast }
+  </mat-grid-list>
+

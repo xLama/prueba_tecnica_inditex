@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="episode-count">
+    Episodes {{(episodes | async)?.length }}
+  </div>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="(episodes | async) || []" class="mat-elevation-z8 episode-table">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Title </th>
+        <td  mat-cell *matCellDef="let episode" [routerLink]="['episode', episode.trackId]">{{ episode.trackName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let episode">{{ episode.releaseDate | date : 'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef> Duration</th>
+        <td mat-cell *matCellDef="let episode">{{ episode.trackTimeMillis | time }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

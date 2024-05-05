@@ -1,0 +1,8 @@
+<header [routerLink]="['/']">
+    <h3>Podcaster</h3>
+</header>
+
+@if (showSpinner | async) {
+    <mat-spinner [diameter]="30"></mat-spinner>
+}
+
