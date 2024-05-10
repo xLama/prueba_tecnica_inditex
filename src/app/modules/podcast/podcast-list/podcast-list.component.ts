@@ -8,7 +8,7 @@ import {
   Component,
 } from '@angular/core';
 import { PodcastService } from '../services/podcast.service';
-import { Podcast } from '../model';
+import { Podcast } from '../model/model';
 import { PodcastChipComponent } from '../podcast-chip/podcast-chip.component';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -45,14 +45,14 @@ export class PodcastListComponent {
     this.form.controls.search?.valueChanges
       .pipe(takeUntilDestroyed())
       .subscribe((typed) => this.filterPodcastList(typed));
-  }
 
-  ngOnInit() {
-    this.podcastService.podcastList.subscribe((podcastList) => {
-      this.podcastList = [...podcastList];
-      this.filteredPodcastList = [...podcastList];
-      this.cd.markForCheck();
-    });
+    this.podcastService.podcastList$
+      .pipe(takeUntilDestroyed())
+      .subscribe((podcastList) => {
+        this.podcastList = [...podcastList];
+        this.filteredPodcastList = [...podcastList];
+        this.cd.markForCheck();
+      });
   }
 
   filterPodcastList(event: string) {

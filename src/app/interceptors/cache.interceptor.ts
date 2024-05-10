@@ -1,7 +1,7 @@
 import { HttpResponse, type HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { of, tap } from 'rxjs';
-import { CacheService } from './cache.service';
+import { CacheService } from '../services/cache.service';
 
 export const cacheInterceptor: HttpInterceptorFn = (req, next) => {
   const cacheService = inject(CacheService);

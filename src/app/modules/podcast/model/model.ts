@@ -1,6 +1,6 @@
 export interface Podcast {
   'im:name': {
-    label: 'The Joe Budden Podcast';
+    label: string;
   };
   'im:image': {
     label: string;

@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { NotifyHTTPRequesting } from '../interceptors/notify-request.service';
+import { NotifyHTTPRequesting } from '../services/notify-request.service';
 import { Observable, combineLatest, map } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +26,7 @@ export class HeaderComponent {
       this.router.events,
       this.notifyRequesting.requesting,
     ]).pipe(
+      takeUntilDestroyed(),
       map(([navigation, isRequesting]) => {
         return navigation instanceof NavigationStart || isRequesting;
       })

@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { Episode, Podcast } from '../model';
+import { Episode, Podcast } from '../model/model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PodcastService {
-  podcastList = new BehaviorSubject<Podcast[]>([]);
-  currentPodcastEpisodes = new BehaviorSubject<Episode[]>([]);
+  private _podcastList = new BehaviorSubject<Podcast[]>([]);
+  private _currentPodcastEpisodes = new BehaviorSubject<Episode[]>([]);
 
   constructor(private httpClient: HttpClient) {}
 
@@ -19,7 +19,7 @@ export class PodcastService {
       )
       .pipe(map((value: any) => value.feed.entry))
       .subscribe((podcastList: Podcast[]) =>
-        this.podcastList.next(podcastList)
+        this._podcastList.next(podcastList)
       );
   }
 
@@ -32,11 +32,19 @@ export class PodcastService {
       )
       .pipe(map((response) => JSON.parse((response as any).contents).results))
       .subscribe((podcastEpisodes: Episode[]) => {
-        this.currentPodcastEpisodes.next(podcastEpisodes);
+        this._currentPodcastEpisodes.next(podcastEpisodes);
       });
   }
 
   cleanPodcastEpisodes() {
-    this.currentPodcastEpisodes.next([]);
+    this._currentPodcastEpisodes.next([]);
+  }
+
+  get podcastList$() {
+    return this._podcastList.asObservable();
+  }
+
+  get currentPodcastEpisodes$() {
+    return this._currentPodcastEpisodes.asObservable();
   }
 }

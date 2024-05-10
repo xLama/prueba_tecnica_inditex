@@ -8,7 +8,7 @@ import {
 import { PodcastService } from '../services/podcast.service';
 import { RouterModule } from '@angular/router';
 import { filter, first } from 'rxjs';
-import { Podcast } from '../model';
+import { Podcast } from '../model/model';
 
 @Component({
   selector: 'app-podcast-detail',
@@ -33,7 +33,7 @@ export class PodcastDetailComponent {
   }
 
   getPodcastDetail(podcastId: string) {
-    this.podcastService.podcastList
+    this.podcastService.podcastList$
       .pipe(
         filter((podcastList) => !!podcastList.length),
         first()

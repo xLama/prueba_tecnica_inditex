@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { PodcastService } from '../services/podcast.service';
 import { filter, first } from 'rxjs';
-import { Episode } from '../model';
+import { Episode } from '../model/model';
 
 @Component({
   selector: 'app-podcast-episode',
@@ -28,7 +28,7 @@ export class PodcastEpisodeDetailComponent {
 
   @Input({ transform: numberAttribute })
   set id(epidoseId: number) {
-    this.podcastService.currentPodcastEpisodes
+    this.podcastService.currentPodcastEpisodes$
       .pipe(
         filter((episodes) => !!episodes.length),
         first()

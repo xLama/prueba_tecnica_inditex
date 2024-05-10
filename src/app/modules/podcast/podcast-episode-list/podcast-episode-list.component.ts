@@ -5,7 +5,8 @@ import { PodcastService } from '../services/podcast.service';
 import { RouterModule } from '@angular/router';
 import { TimePipe } from '../../../pipes/time.pipe';
 import { Observable, map } from 'rxjs';
-import { Episode } from '../model';
+import { Episode } from '../model/model';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-podcast-episode-list',
@@ -20,7 +21,8 @@ export class PodcastEpisodeListComponent {
   episodes: Observable<Episode[]>;
 
   constructor(private podcastService: PodcastService) {
-    this.episodes = this.podcastService.currentPodcastEpisodes.pipe(
+    this.episodes = this.podcastService.currentPodcastEpisodes$.pipe(
+      takeUntilDestroyed(),
       map((episodes) => episodes.slice(1)) // first is not an episode
     );
   }
